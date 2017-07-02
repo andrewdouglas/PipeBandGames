@@ -7,13 +7,13 @@ Scottish bagpipe and drumming competitions/games require a lot of organization. 
 
 * * *
 
-### Environment Setup
+### Technologies Used
 
-This code was created using Visual Studio 2017 Community and is set to compile against the .NET Core 1.1 Framework. Database access is via EntityFrameworkCore with a Sqlite database (the assumption is that an integrated database will be the cheapest option).
-
-* * *
-
-More to come later...
+*   .NET Core 1.1 with C# created using the Visual Studio 2017 Community (free)
+*   Entity Framework Core (Code First) for data access
+*   SQLite relational database
+*   NUnit unit testing framework
+*   NSubstitute mocking framework
 
 * * *
 

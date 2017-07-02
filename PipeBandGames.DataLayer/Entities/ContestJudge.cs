@@ -1,5 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.ObjectModel;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
 
 namespace PipeBandGames.DataLayer.Entities
 {
@@ -18,5 +20,16 @@ namespace PipeBandGames.DataLayer.Entities
 
         [ForeignKey("JudgeId")]
         public Judge Judge { get; set; }
+
+        // Solo events assigned to the judge.
+        // This is a read-only convenience property.
+        [NotMapped]
+        public ReadOnlyCollection<SoloEvent> SoloEvents
+        {
+            get
+            {
+                return this.Contest.SoloEvents.Where(x => x.Judge != null && x.Judge.JudgeId == this.Judge.JudgeId).ToList().AsReadOnly();
+            }
+        }
     }
 }

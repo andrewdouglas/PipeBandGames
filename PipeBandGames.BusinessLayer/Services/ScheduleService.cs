@@ -1,4 +1,5 @@
 ﻿using PipeBandGames.BusinessLayer.Interfaces;
+using PipeBandGames.DataLayer.Constants;
 using PipeBandGames.DataLayer.Entities;
 using System;
 using System.Collections.Generic;
@@ -9,11 +10,11 @@ namespace PipeBandGames.BusinessLayer.Services
     public class ScheduleService : IScheduleService
     {
         // This service depends on another service, but the dependency is to an interface.  This promotes loose-coupling.
-        private readonly IStartTimeService startTimeService;
+        private readonly IJudgeService judgeService;
 
-        public ScheduleService(IStartTimeService startTimeService)
+        public ScheduleService(IJudgeService judgeService)
         {
-            this.startTimeService = startTimeService;
+            this.judgeService = judgeService;
         }
 
         public List<SoloEvent> GetSoloEventSchedule(Contest contest)
@@ -23,11 +24,37 @@ namespace PipeBandGames.BusinessLayer.Services
 
             // For scheduling purposes, we only care about solo events that have competitors associated with them
             List<SoloEvent> soloEvents = contest.SoloEvents.Where(x => x.SoloEventCompetitors.Any()).ToList();
+            contest.ScheduledSoloEvents = soloEvents;
+
+            // Assign the judges to events
+            this.AssignJudgesToEvents(contest);
 
             // Set the Start times of all solo events
-            this.startTimeService.SetStartTimes(contest, soloEvents);
+            this.SetStartTimes(contest);
 
             return soloEvents;
+        }
+
+        private void SetStartTimes(Contest contest)
+        {
+            // Now that the judges have been assigned events, assign times to them
+            foreach (ContestJudge contestJudge in contest.ContestJudges)
+            {
+                DateTime currentEventStart = contest.FirstSoloEventStart.Value;
+                foreach (SoloEvent soloEvent in contestJudge.SoloEvents)
+                {
+                    soloEvent.Start = currentEventStart;
+                    currentEventStart = currentEventStart.AddMinutes(soloEvent.DurationMinutes + Config.BreakBetweenEvents);
+                }
+            }
+        }
+
+        private void AssignJudgesToEvents(Contest contest)
+        {
+            foreach (SoloEvent soloEvent in contest.ScheduledSoloEvents)
+            {
+                soloEvent.Judge = this.judgeService.GetMatchingJudge(contest, soloEvent);
+            }
         }
 
         private void Validate(Contest contest)

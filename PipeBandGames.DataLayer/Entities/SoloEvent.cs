@@ -23,7 +23,7 @@ namespace PipeBandGames.DataLayer.Entities
         [ForeignKey("SoloEventId")]
         public List<SoloEventCompetitor> SoloEventCompetitors { get; set; } = new List<SoloEventCompetitor>();
 
-        public Judge Judges { get; set; }
+        public Judge Judge { get; set; }
 
         public Grade Grade { get; set; }
 

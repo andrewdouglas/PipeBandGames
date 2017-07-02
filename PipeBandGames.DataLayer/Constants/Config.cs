@@ -14,5 +14,7 @@
 
         // default number of minutes after RegistrationOpen time that the first SoloEvent should start
         public static int FirstEventRegistrationOpenOffset = 30;
+
+        public static int BreakBetweenEvents = 10;
     }
 }

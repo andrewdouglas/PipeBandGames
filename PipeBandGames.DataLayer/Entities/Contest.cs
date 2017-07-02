@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PipeBandGames.DataLayer.Constants;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -32,9 +33,19 @@ namespace PipeBandGames.DataLayer.Entities
 
         public DateTime? FirstSoloEventStart
         {
-            get { return this.SoloEvents.OrderBy(x => x.Start).FirstOrDefault(x => x.Start != null)?.Start; }
+            get
+            {
+                if (!RegistrationOpen.HasValue)
+                {
+                    return null;
+                }
+
+                return RegistrationOpen.Value.AddMinutes(Config.FirstEventRegistrationOpenOffset);
+            }
         }
 
+        // These are the solo events offered at the competition, not to be confused with the ScheduledSoloEvents, the actual events that will take place.
+        // There may be a difference in the two since perhaps no Grade 2 drummers may register, etc.
         [ForeignKey("ContestId")]
         public List<SoloEvent> SoloEvents { get; set; } = new List<SoloEvent>();
 
@@ -43,5 +54,10 @@ namespace PipeBandGames.DataLayer.Entities
 
         [ForeignKey("ContestId")]
         public List<ContestJudge> ContestJudges { get; set; } = new List<ContestJudge>();
+
+        // These are the solo events that have one or more competitors in them that will be held at the contest, not 
+        // to be confused with SoloEvents which is the events offered at the competition.
+        [NotMapped]
+        public List<SoloEvent> ScheduledSoloEvents { get; set; } = new List<SoloEvent>();
     }
 }

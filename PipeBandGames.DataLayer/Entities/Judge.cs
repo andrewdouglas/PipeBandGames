@@ -16,6 +16,10 @@ namespace PipeBandGames.DataLayer.Entities
         [ForeignKey("PersonId")]
         public Person Person { get; set; }
 
-        public List<Idiom> Idioms { get; set; }
+        // Idioms the judge is certified to adjudicate
+        public List<Idiom> Idioms { get; set; } = new List<Idiom>();
+
+        // Instrument(s) the judge is certified to adjudicate
+        public List<Instrument> Instruments { get; set; } = new List<Instrument>();
     }
 }

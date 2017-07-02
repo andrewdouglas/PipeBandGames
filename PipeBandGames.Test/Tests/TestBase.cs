@@ -44,18 +44,22 @@ namespace PipeBandGames.Test.Tests
 
         public Judge OneJudge
         {
-            get { return new Judge(); }
-        }
-
-        public List<ContestJudge> OneContestJudgeList
-        {
             get
             {
-                return new List<ContestJudge>
-                {
-                    new ContestJudge { Judge = this.OneJudge }
-                };
+                var judge = new Judge { JudgeId = 7 };
+                judge.Instruments.Add(Instrument.Bagpipe);
+                judge.Idioms.Add(Idiom.Piobaireachd);
+                return judge;
             }
+        }
+
+        public List<ContestJudge> OneContestJudgeList(Contest contest)
+        {
+            Judge judge = this.OneJudge;
+            return new List<ContestJudge>
+            {
+                new ContestJudge { Judge = judge, JudgeId = judge.JudgeId, Contest = contest }
+            };
         }
 
         // Helper method that returns a Competitor instance with a populated List of SoloEventCompetitor instances matching with the given Contest
@@ -74,15 +78,21 @@ namespace PipeBandGames.Test.Tests
             return competitor;
         }
 
-        protected List<ContestJudge> GetContestJudges(params Idiom[] idioms)
+        protected List<ContestJudge> GetContestJudges(Contest contest, Instrument instrument, params Idiom[] idioms)
         {
-            return idioms.Select(x => new ContestJudge
+            var result = new List<ContestJudge>();
+            int judgeId = 0;
+            foreach (Idiom idiom in idioms)
             {
-                Judge = new Judge
-                {
-                    Idioms = new List<Idiom> { x }
-                }
-            }).ToList();
+                var judge = new Judge();
+                judge.JudgeId = judgeId++;
+                judge.Instruments.Add(instrument);
+                judge.Idioms.Add(idiom);
+
+                result.Add(new ContestJudge { JudgeId = judge.JudgeId, Judge = judge, Contest = contest });
+            }
+
+            return result;
         }
     }
 }

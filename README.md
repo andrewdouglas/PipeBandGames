@@ -4,16 +4,15 @@ Scottish bagpipe and drumming competitions/games require a lot of organization. 
 
 1.  Automate time-consuming manual work for games organizers
 2.  Practice/teach software development best practices
+3.  Be platform-independent by way of using .NET Core
 
 * * *
 
 ### Technologies Used
 
-*   .NET Core 1.1 with C# created using the Visual Studio 2017 Community (free)
-*   Entity Framework Core (Code First) for data access
-*   SQLite relational database
-*   NUnit unit testing framework
-*   NSubstitute mocking framework
+*   .NET Core 1.1 with C# created using Visual Studio 2017 Community (free)
+*   Data Access: Entity Framework Core (Code First) with SQLite relational database
+*   Unit Test-related: NUnit unit testing framework, NSubstitute mocking framework
 
 * * *
 

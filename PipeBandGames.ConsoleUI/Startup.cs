@@ -17,7 +17,7 @@ namespace PipeBandGames.ConsoleUI
 
             this.configuration = builder.Build();
 
-            Console.WriteLine($"Hi {configuration["foo"]}");
+            ////Console.WriteLine($"Hi {configuration["foo"]}");
         }
     }
 }

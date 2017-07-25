@@ -17,9 +17,11 @@ namespace PipeBandGames.DataLayer.Entities
         public Person Person { get; set; }
 
         // Idioms the judge is certified to adjudicate
+        [NotMapped]
         public List<Idiom> Idioms { get; set; } = new List<Idiom>();
 
         // Instrument(s) the judge is certified to adjudicate
+        [NotMapped]
         public List<Instrument> Instruments { get; set; } = new List<Instrument>();
     }
 }

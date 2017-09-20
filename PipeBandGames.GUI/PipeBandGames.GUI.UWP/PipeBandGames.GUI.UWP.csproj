@@ -133,6 +133,16 @@
       <Name>Visual C++ 2015 Runtime for Universal Windows Platform Apps</Name>
     </SDKReference>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\PipeBandGames.BusinessLayer\PipeBandGames.BusinessLayer.csproj">
+      <Project>{09e47783-d2c2-49b6-904a-95e015e3db82}</Project>
+      <Name>PipeBandGames.BusinessLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\PipeBandGames.DataLayer\PipeBandGames.DataLayer.csproj">
+      <Project>{ac975d2d-136a-47fd-b7fa-899f03bb5415}</Project>
+      <Name>PipeBandGames.DataLayer</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="..\PipeBandGames.GUI\PipeBandGames.GUI.projitems" Label="Shared" Condition="Exists('..\PipeBandGames.GUI\PipeBandGames.GUI.projitems')" />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

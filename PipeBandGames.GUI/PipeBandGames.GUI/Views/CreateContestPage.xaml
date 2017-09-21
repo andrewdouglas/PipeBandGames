@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PipeBandGames.GUI.Views.CreateContestPage"
+             Title="Create a Contest">
+    <ContentPage.Content>
+        <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Padding="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="2*" />
+            </Grid.ColumnDefinitions>
+
+            <Label Text="Contest Name:" Grid.Row="0" Grid.Column="0" VerticalOptions="Center" />
+            <Entry x:Name="txtName" Text="{Binding Name}" Grid.Row="0" Grid.Column="1" VerticalOptions="Center" HorizontalOptions="FillAndExpand" />
+
+            <Label Text="Contest Date:" Grid.Row="1" Grid.Column="0" VerticalOptions="Center" />
+            <DatePicker MinimumDate="{Binding Today}" Date="{Binding Date}" Grid.Row="1" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center" />
+            
+            <Button Clicked="CreateContest_Clicked" Grid.Row="2" Grid.ColumnSpan="2" Text="Create Contest" HorizontalOptions="Center" VerticalOptions="Center" />
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

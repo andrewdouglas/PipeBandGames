@@ -19,7 +19,7 @@ namespace PipeBandGames.GUI
 
 		public static void SetMainPage()
 		{
-            Current.MainPage = new NavigationPage(new MainMenu());
+            Current.MainPage = new NavigationPage(new MainMenuPage());
             ////Current.MainPage = new TabbedPage
             ////{
             ////    Children =

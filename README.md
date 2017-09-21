@@ -4,7 +4,7 @@ Scottish bagpipe and drumming competitions/games require a lot of organization. 
 
 1.  Automate time-consuming manual work for games organizers
 2.  Practice/teach software development best practices
-3.  Be platform-independent by way of using .NET Core
+3.  Be platform-independent by way of using .NET Standard
 
 * * *
 

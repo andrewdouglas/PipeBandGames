@@ -10,9 +10,10 @@ Scottish bagpipe and drumming competitions/games require a lot of organization. 
 
 ### Technologies Used
 
-*   .NET Core 1.1 with C# created using Visual Studio 2017 Community (free)
+*   .NET Standard 1.3 with C# created using Visual Studio 2017 Community (free)
 *   Data Access: Entity Framework Core (Code First) with SQLite relational database
 *   Unit Test-related: NUnit unit testing framework, NSubstitute mocking framework
+*	Xamarin Forms-based GUI for cross-platform compatibility without a web server
 
 * * *
 

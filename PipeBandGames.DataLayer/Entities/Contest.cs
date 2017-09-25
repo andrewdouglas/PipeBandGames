@@ -13,6 +13,8 @@ namespace PipeBandGames.DataLayer.Entities
         [Key]
         public int ContestId { get; set; }
 
+        public string Name { get; set; }
+
         public DateTime ContestDate { get; set; }
 
         public DateTime? DoorsOpen { get; set; }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PipeBandGames.BusinessLayer.Interfaces;
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -14,7 +15,10 @@ namespace PipeBandGames.GUI.Views
 
         public void CreateContest_Clicked(object sender, EventArgs args)
         {
-            Navigation.PushAsync(new CreateContestPage());
+            // TODO: Figure out better way to do DI
+            IContestService contestService = App.ServiceProvider.GetService(typeof(IContestService)) as IContestService;
+            var createContestPage = new CreateContestPage(contestService);
+            Navigation.PushAsync(createContestPage);
         }
     }
 }

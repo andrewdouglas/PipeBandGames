@@ -3,11 +3,11 @@ using PipeBandGames.DataLayer.Entities;
 
 namespace PipeBandGames.DataLayer
 {
-    public class PipeBandGamesContext : DbContext
+    public class PipeBandGamesContext : DbContext, IPipeBandGamesContext
     {
         public DbSet<Competitor> Competitors { get; set; }
 
-        public DbSet<Contest> Contest { get; set; }
+        public DbSet<Contest> Contests { get; set; }
 
         public DbSet<ContestJudge> ContestJudges { get; set; }
 

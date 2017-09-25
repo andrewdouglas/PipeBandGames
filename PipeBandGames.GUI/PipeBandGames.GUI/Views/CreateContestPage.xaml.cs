@@ -1,4 +1,6 @@
-﻿using System;
+﻿using PipeBandGames.BusinessLayer.Interfaces;
+using PipeBandGames.DataLayer.Entities;
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -7,9 +9,13 @@ namespace PipeBandGames.GUI.Views
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class CreateContestPage : ContentPage
 	{
-        public CreateContestPage()
+        private readonly IContestService contestService;
+
+        public CreateContestPage(IContestService contestService)
 		{
-			InitializeComponent();
+            this.contestService = contestService;
+
+            InitializeComponent();
 
             // This class is responsible for bindings...the properties in this class are bound to XAML controls
             BindingContext = this;
@@ -48,8 +54,13 @@ namespace PipeBandGames.GUI.Views
                 return;
             }
 
-            // TODO: Create the contest
-            DisplayAlert("Alert", $"Creating contest {this.Name} on {this.Date}", "OK");
+            var contest = new Contest
+            {
+                Name = Name,
+                ContestDate = this.Date
+            };
+            this.contestService.CreateContest(contest);
+            DisplayAlert("Alert", $"Created contest {this.Name} on {this.Date}.  ID = {contest.ContestId}", "OK");
         }
     }
 }
